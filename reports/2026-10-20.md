@@ -56,8 +56,7 @@
   YouTube; no re-upload of quarantined row 27 attempted.
 - publish_status for the 17:00 run: failed (same root cause as above).
 - model_usage: 3 vertical images (1152x2048, portrait verified); TTS 20.9s.
-- The 17:00 run's public report push (step 6) was skipped — pushing a
-  sanitized "upload auth is broken" report is fine on credential scan, but the
-  same blocker was already reported earlier today and there is no new
-  publishable result; the daily report in the repo already carries this run's
-  outcome via this append.
+- The 17:00 run's public report push (step 6): scan_report.py clean; pushed to
+  brainbait-reports/daily-reports as reports/2026-10-20.md + latest.md. First
+  push attempt was killed by a service restart and verified (via the raw CDN +
+  GitHub API) as not landed before retrying; retry succeeded.
