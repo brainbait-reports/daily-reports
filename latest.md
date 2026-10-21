@@ -43,3 +43,21 @@
   - The 17:00 scheduled run will see 0/1 uploads and will likely attempt the
     same failing upload (same invalid_grant), quarantining another built video.
     Fix = Tyler re-authorizes YouTube OAuth; no code change needed.
+
+## 17:00 scheduled run (same day)
+- Built vid 27 "Sea Otters Hold Hands So They Don't Drift Away" (topic #13,
+  niche=animals; experiment arm hook=curiosity_gap+caption=on; script + images
+  web-verified; QC PASS, phash cd11322a0d6eeb7b, 7.2MB; TTS voiceover 20.9s).
+- `publish.py --live` exited 1: same OAuth failure — HTTP 400 invalid_grant,
+  "Token has been expired or revoked.", on the refresh-token grant. No bytes
+  reached YouTube. Row 27 auto-quarantined by design. Diagnostic refresh call
+  confirmed the stored refresh token itself is dead.
+- duplicate_protection: 0 published today (limit 1); no upload attempt reached
+  YouTube; no re-upload of quarantined row 27 attempted.
+- publish_status for the 17:00 run: failed (same root cause as above).
+- model_usage: 3 vertical images (1152x2048, portrait verified); TTS 20.9s.
+- The 17:00 run's public report push (step 6) was skipped — pushing a
+  sanitized "upload auth is broken" report is fine on credential scan, but the
+  same blocker was already reported earlier today and there is no new
+  publishable result; the daily report in the repo already carries this run's
+  outcome via this append.
