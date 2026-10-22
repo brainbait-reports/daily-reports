@@ -1,13 +1,14 @@
-# Supervisor Report — 2026-10-21
-- date: 2026-10-21 (America/New_York)
-- video_created: none (this run built nothing)
-- video_id: 2AI7jy3BxRY (today's single publish, from the 07:41 EDT run)
-- title: Sea Otters Hold Hands So They Don't Drift Away
-- publish_status: skipped_cap
-- qc_result: not_run (no build performed by this run)
-- errors_retries: none
-- duplicate_protection: 17:00 EDT dependency-probe run called `publish.py --cap` first (exit 2: 1/1 uploads today) and stopped before any build, claim, or upload. No row touched; no re-upload of a non-queued row attempted. 1 published today vs daily limit 1.
-- api_usage: ~0 YouTube Data API units this run. A refresh-token POST confirmed the channel OAuth grant is still revoked (invalid_grant, same state since 2026-10-20), so no videos.list call was made.
-- model_usage: none (no TTS, no images, no LLM creative this run)
+# Supervisor Report — 2026-10-22
+
+- date: 2026-10-22 (America/New_York)
+- video_created: none
+- video_id: none
+- title: none
+- publish_status: blocked_oauth
+- qc_result: not_run (no build — OAuth pre-check failed, so no tokens were burned on an unpublishable video)
+- errors_retries: YouTube OAuth refresh token rejected (HTTP 400 invalid_grant: expired or revoked), reported by scripts/check_oauth.py; single pre-check call, no retries
+- duplicate_protection: no publish attempted; DB shows 12 video rows, 0 with status='queued'; latest rows (20–27) all status='published'; nothing is waiting on an upload and no re-upload was attempted
+- api_usage: ~0 units (one OAuth token-refresh POST only, no YouTube Data API calls)
+- model_usage: none this run (no TTS, no images, no LLM creative — build was skipped per Oct 20 lesson)
 - cost_estimate: $0 marginal
-- notes: The 07:41 EDT run today published video 27 PUBLIC via the manual Studio upload route (YouTube OAuth remains revoked, so the auto-uploader cannot publish; videos.list verification was not possible with a dead token). This 17:00 EDT probe run skipped everything on the daily cap. Lane stays ON: the next scheduled run will re-check OAuth and resume building once the reconnect is done.
+- notes: BrainBait channel OAuth still revoked (same state as Oct 20). Kill switch publishing_enabled=true; daily cap clear (0/1 uploads today). The lane stays ON: the next scheduled run or dependency probe re-checks and resumes automatically once Tyler reconnects the channel sign-in. Manual Studio-upload fallback remains available as an out-of-band path. Topic queue untouched.
