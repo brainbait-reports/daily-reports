@@ -1,4 +1,4 @@
-# Supervisor Report — 2026-10-24
+# Supervisor Report — 2026-10-28
 - video_created: none
 - video_id: none
 - title: none
@@ -10,4 +10,4 @@
 - api_usage: ~0 units (only the OAuth token-refresh POST; no YouTube Data API calls)
 - model_usage: none (no TTS, no images, no LLM creative — build skipped to avoid burning tokens on an unpublishable video)
 - cost_estimate: $0 marginal
-- notes: YouTube OAuth still revoked (HTTP 400 invalid_grant). Kill switch was ON (publishing_enabled=true) and daily cap was clear (0/1) before the OAuth pre-check stopped the run. No video was built. Lane stays ON — next scheduled run or dependency probe re-checks and resumes automatically once Tyler reconnects the BrainBait channel sign-in. Manual Studio-upload fallback remains available per the 2026-10-20 recovery playbook, but this run followed the standing body: stop on blocked_oauth without building.
+- notes: YouTube OAuth still revoked (HTTP 400 invalid_grant), same as recent blocked runs. Kill switch was ON (publishing_enabled=true) and daily cap was clear (0/1) before the OAuth pre-check stopped the run. No video was built. Lane stays ON — next scheduled run or dependency probe re-checks and resumes automatically once Tyler reconnects the BrainBait channel sign-in. Manual Studio-upload fallback remains available per the 2026-10-20 recovery playbook, but this run followed the standing body: stop on blocked_oauth without building.
