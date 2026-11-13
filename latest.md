@@ -1,14 +1,13 @@
-# Supervisor Report — 2026-11-12
-- date: 2026-11-12 (America/New_York)
-- video_created: none
-- video_id: none
-- title: none
-- publish_status: blocked_oauth
-- qc_result: not_run (no build attempted; OAuth pre-check failed)
-- errors_retries:
-  - check_oauth.py exit 1: "refresh token rejected (HTTP 400 invalid_grant: expired or revoked)"
-- duplicate_protection: no upload attempted; no rows claimed or changed; 0 published today (limit 1)
-- api_usage: ~0 units (only the OAuth token-refresh POST; no YouTube Data API calls)
-- model_usage: none (no TTS, no images, no LLM creative — build skipped to avoid burning tokens on an unpublishable video)
+# Supervisor Report — 2026-11-13
+- date: 2026-11-13 (America/New_York)
+- video_created: none (no new build this run)
+- video_id: 4wV1_vAemt8 (today's already-published video, vid 46)
+- title: Bananas Are Slightly Radioactive
+- publish_status: skipped_cap
+- qc_result: not_run (no build this run; daily cap already reached)
+- errors_retries: none
+- duplicate_protection: daily cap check ran first — 1 published today (limit 1), so no new build or upload was attempted; no re-upload of a non-queued row; no duplicate risk
+- api_usage: 0 units this run (no YouTube Data API calls; cap check is local DB only)
+- model_usage: none (no TTS, no images, no LLM creative this run)
 - cost_estimate: $0 marginal
-- notes: YouTube OAuth still revoked (HTTP 400 invalid_grant), same as recent blocked runs — auto-publish has been impossible since 2026-10-20. Kill switch was ON (publishing_enabled=true) and daily cap was clear (0/1) before the OAuth pre-check stopped the run. No video was built. Lane stays ON — next scheduled run or dependency probe re-checks and resumes automatically once Tyler reconnects the BrainBait channel sign-in. Manual Studio-upload fallback remains available per the 2026-10-20 recovery playbook (used Nov 10 and Nov 11 to hold cadence), but this run followed the standing body: stop on blocked_oauth without building.
+- notes: The 17:00 production run stopped at step 0 — today's one Short (vid 46, "Bananas Are Slightly Radioactive", topic #33) was already posted PUBLIC earlier today via manual YouTube Studio upload (video ID 4wV1_vAemt8), so the daily cap of 1 was reached and cadence is held. Note: a separate OAuth pre-check this run also failed (refresh token rejected, HTTP 400 invalid_grant — token expired/revoked, unchanged since Oct 20), so API publishing remains unavailable and manual Studio uploads remain the working route. 9 topics remain unused (27-32, 34, 35).
